@@ -1,6 +1,7 @@
 package com.yugutou.charpter3_array.level1;
 
-import static tools.ArrayTool.printList;
+
+import static com.yugutou.tools.ArrayTool.printList;
 
 /**
  * @author liuqingchao

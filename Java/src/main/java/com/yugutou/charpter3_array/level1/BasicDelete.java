@@ -2,7 +2,8 @@ package com.yugutou.charpter3_array.level1;
 
 import java.util.Arrays;
 
-import static tools.ArrayTool.printList;
+import static com.yugutou.tools.ArrayTool.printList;
+
 
 /**
  * @author liuqingchao

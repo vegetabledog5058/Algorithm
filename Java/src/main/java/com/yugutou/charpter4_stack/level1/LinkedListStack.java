@@ -1,7 +1,11 @@
-package com.yugutou.charpter4.level1;
+package com.yugutou.charpter4_stack.level1;
 
 import java.util.LinkedList;
 
+/**
+ * 基于Java的LinkedList来实现栈
+ * @param <T>
+ */
 public class LinkedListStack<T> {
     private LinkedList<T> ll = new LinkedList<>();
 

@@ -1,4 +1,4 @@
-package com.yugutou.charpter4.level1;
+package com.yugutou.charpter4_stack.level1;
 
 class ListStack<T> {
     //定义链表
