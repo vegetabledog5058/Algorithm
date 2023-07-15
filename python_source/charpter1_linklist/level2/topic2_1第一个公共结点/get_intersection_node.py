@@ -1,5 +1,5 @@
 # coding=utf-8
-from python_source.charpter1_linklist.list_node import ListNode
+from python_source.list_node import ListNode
 
 
 class GetIntersectionNode:

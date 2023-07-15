@@ -1,6 +1,6 @@
 # coding=utf-8
 
-from python_source.charpter1_linklist.list_node import ListNode, init_list
+from python_source.list_node import ListNode, init_list
 
 class MergeTwoLists:
 
