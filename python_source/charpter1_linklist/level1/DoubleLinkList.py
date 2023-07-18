@@ -19,20 +19,19 @@ class DoubleLinkList:
             return 0
         count = 0
         cur = self.__head
-        while cur.next is not None:
+        while cur is not None:
             count += 1
             cur = cur.next
         return count
 
     def travel(self):
-     # 遍历整个链表
+        # 遍历整个链表
         if self.is_empty():
             return
         cur = self.__head
-        while cur.next is not None:
+        while cur is not None:
             print(cur.elem)
             cur = cur.next
-        print(cur.elem)
 
     def add(self, item):
         # 链表头部添加元素
@@ -41,7 +40,7 @@ class DoubleLinkList:
             self.__head = node
         else:  # 链表不为空时
             node.next = self.__head  # 新结点的next指针指向头指针所指的结点
-            self.__head.pre = node.next  # 再将头指针结点的pre指针指向新结点的next
+            self.__head.pre = node  # 再将头指针结点的pre指针指向新结点的next
             self.__head = node  # 最后修改头指针指向新结点
 
     def append(self, item):
@@ -56,7 +55,7 @@ class DoubleLinkList:
             while cur.next is not None:  # 循环找到尾部结点的指向，当退出循环时指针已指向最后一个结点
                 cur = cur.next
             cur.next = node  # 将尾部结点的next指向新结点
-            node.pre = cur.next  # 新结点的pre指向尾结点的next
+            node.pre = cur
 
     def modify(self, pos, item):
         """修改指定位置的元素"""
@@ -92,15 +91,15 @@ class DoubleLinkList:
             node = Node(item)
             count = 0
             cur = self.__head  # 当时指针
-            while count < (pos-1):  # 循环找到指向pos位置结点的指针
+            while count < (pos - 1):  # 循环找到指向pos位置结点的指针
                 count += 1
                 cur = cur.next
             # 当上面退出循环时，说明cur已经指向了pos的位置
             # 所以接下来修改四个指针的指向来实现插入元素
-            cur.next.pre = node.next  # 1.将cur的下一结点的pre指向新结点next
+            cur.next.pre = node  # 1.将cur的下一结点的pre指向新结点next
             node.next = cur.next  # 2.将新结点的next指向cur的下一结点
             cur.next = node  # 3.将cur的next指向新结点
-            node.pre = cur.next  # 4.将新结点的pre指向cur的next
+            node.pre = cur  # 4.将新结点的pre指向cur的next
 
     def remove(self, item):
         # 删除节点
@@ -113,10 +112,12 @@ class DoubleLinkList:
                 # 要删除的元素刚好是头部元素，就把头指针指向当前的下一个结点
                 if cur == self.__head:
                     self.__head = cur.next
+                    self.__head.pre = None
                 else:
-                    forword.next = cur.next  # 如果不是头元素指针就继续向后走
+                    forword.next = cur.next
+                    cur.next.pre = forword
                 return
-            else:  # 未找到要删除的元素，指针向后走，继续遍历
+            else:
                 forword = cur
                 cur = cur.next
 
@@ -133,14 +134,17 @@ class DoubleLinkList:
             return True
         return False
 
+
 if __name__ == '__main__':
     ll = DoubleLinkList()
-    print(ll.is_empty())
-    print(ll.length())
-    ll.travel()
 
-    print('add')
-    ll.add(9)
+    ll.append(1)
+    ll.insert(2, 2)
+    ll.append(3)
+    ll.append(5)
+    ll.remove(2)
+    ll.search(2)
+
     ll.travel()
     ll.add(10)
     ll.travel()
