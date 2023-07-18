@@ -7,45 +7,7 @@ public class DoublyLinkList {
         first = null;
         last = first;
     }
-    //从头部开始演绎
-    public void displayForward() {
-        System.out.print("List(first--->last): ");
-        DoubleNode current = first;
-        while (current != null) {
-            current.displayNode();
-            current = current.next;
-        }
-        System.out.println();
-    }
 
-    //从尾部开始演绎
-    public void displayBackward() {
-        System.out.print("List(last--->first): ");
-        DoubleNode current = last;
-        while (current != null) {
-            current.displayNode();
-            current = current.prev;
-        }
-        System.out.println();
-    }
-
-    /**
-     * 创建双向链表结点
-     */
-    class DoubleNode {
-        public int data;    //数据域
-        public DoubleNode next;    //指向下一个结点
-        public DoubleNode prev;
-
-        public DoubleNode(int data) {
-            this.data = data;
-        }
-
-        //打印结点的数据域
-        public void displayNode() {
-            System.out.print("{" + data + "} ");
-        }
-    }
 
     /**
      * 创建和测试双向链表
@@ -77,6 +39,27 @@ public class DoublyLinkList {
         doublyLinkList.displayBackward();
     }
 
+    //从头部开始演绎
+    public void displayForward() {
+        System.out.print("List(first--->last): ");
+        DoubleNode current = first;
+        while (current != null) {
+            current.displayNode();
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    //从尾部开始演绎
+    public void displayBackward() {
+        System.out.print("List(last--->first): ");
+        DoubleNode current = last;
+        while (current != null) {
+            current.displayNode();
+            current = current.prev;
+        }
+        System.out.println();
+    }
 
     //头部插入
     public void insertFirst(int data) {
@@ -186,5 +169,22 @@ public class DoublyLinkList {
         return current;        //返回
     }
 
+    /**
+     * 创建双向链表结点
+     */
+    class DoubleNode {
+        public int data;    //数据域
+        public DoubleNode next;    //指向下一个结点
+        public DoubleNode prev;
+
+        public DoubleNode(int data) {
+            this.data = data;
+        }
+
+        //打印结点的数据域
+        public void displayNode() {
+            System.out.print("{" + data + "} ");
+        }
+    }
 
 }
