@@ -100,17 +100,20 @@ struct ListNode* deleteNode(struct ListNode*head, int position) {
         return head;
     }
     if (position == 1) {
-        return head->next;
+        struct ListNode*curNode=head;
+       head= head->next;
+        free(curNode);
+        return head;
     } else {
-        struct ListNode* preNode = head;
+        struct ListNode* cur = head;
         int count = 1;
         while (count < position - 1) {
-            preNode = preNode->next;
+            cur = cur->next;
             count++;
         }
-        struct ListNode*curNode = preNode->next;
-        preNode->next = curNode->next;
-        free(curNode);
+        struct ListNode*tmp = cur->next;
+        cur->next = tmp->next;
+        free(tmp);
         return head;
     }
 }
