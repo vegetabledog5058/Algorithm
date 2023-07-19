@@ -107,22 +107,23 @@ public class BasicLinkList {
             return null;
         }
         int size = getLength(head);
-        if (position > size || position <= 0) {
+        //思考一下，这里为什么是size，而不是size+1
+        if (position > size || position <1) {
             System.out.println("输入的参数有误");
             return head;
         }
-
         if (position == 1) {
-            // head.next就是链表的新head
+            //curNode就是链表的新head
             return head.next;
-        }
-        Node preNode = head;
-        int count = 1;
-        while (count < position) {
-            preNode = preNode.next;
-            count++;
-            Node curNode = preNode.next;
-            preNode.next = curNode.next;
+        } else {
+            Node cur = head;
+            int count = 1;
+            while (count < position - 1) {
+                cur = cur.next;
+                count++;
+            }
+            Node curNode = cur.next;
+            cur.next = curNode.next;
         }
         return head;
     }
