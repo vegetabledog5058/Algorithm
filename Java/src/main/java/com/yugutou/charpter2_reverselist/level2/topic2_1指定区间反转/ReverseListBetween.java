@@ -53,7 +53,7 @@ public class ReverseListBetween {
         ListNode succ = rightNode.next;
 
         // 注意：切断链接
-        pre.next = null;
+//        pre.next = null;
         rightNode.next = null;
 
         // 第 4 步：同第 206 题，反转链表的子区间
