@@ -13,6 +13,8 @@ public class FindFirstCommonNode {
         ListNode la = heads[0];
         ListNode lb = heads[1];
 
+
+
         int testMethod = 1;
         ListNode node = new ListNode(0);
         switch (testMethod) {

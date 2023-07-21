@@ -31,7 +31,7 @@ public class BasicLinkList {
 
         // 删除中间节点2
         head = BasicLinkList.deleteNode(head, 2);
-        System.out.println("删除中间节点2：" + BasicLinkList.toString(head));
+        System.out.println("删除中间节点3：" + BasicLinkList.toString(head));
 
         // 删除头部节点1
         head = BasicLinkList.deleteNode(head, 1);
