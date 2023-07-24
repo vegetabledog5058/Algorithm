@@ -1,4 +1,4 @@
-package com.yugutou.charpter1_linklist.level1;
+package com.yugutou.charpter1_linklist.level3;
 
 public class DoublyLinkList {
     private DoubleNode first;
