@@ -7,13 +7,13 @@ import java.util.Stack;
  */
 public class ReverseList_AddList {
     public static void main(String[] args) {
-        int[] a = {9, 3, 7};
+        int[] a = {1,8};
         ListNode nodeA = initLinkedList(a);
-        int[] b = {6, 3};
+        int[] b = {1,2};
         ListNode nodeB = initLinkedList(b);
 
         ListNode d = null;
-        int testMethod = 1;
+        int testMethod = 2;
         switch (testMethod) {
             case 1://方法1：通过栈实现
                 d = addInListByStack(nodeA, nodeB);
