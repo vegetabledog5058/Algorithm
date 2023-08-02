@@ -76,28 +76,29 @@ public class Invert {
      * @return
      */
     public static TreeNode invertTree_3(TreeNode root) {
-        LinkedList<TreeNode> que = new LinkedList<TreeNode>();
-        if (root == null)
+        if (root == null) {
             return null;
-
-        while (que.size() > 0) {
-            int size = que.size();
-            for (int i = 0; i < size; i++) {
-                TreeNode node = que.remove();
-                //这一行就是 精华所在
-                swap(node.left, node.right); // 节点处理
-                if (node.left != null)
-                    que.add(node.left);
-                if (node.right != null)
-                    que.add(node.right);
+        }
+        //将二叉树中的节点逐层放入队列中，再迭代处理队列中的元素
+        LinkedList<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            //每次都从队列中拿一个节点，并交换这个节点的左右子树
+            TreeNode tmp = queue.poll();
+            TreeNode left = tmp.left;
+            tmp.left = tmp.right;
+            tmp.right = left;
+            //如果当前节点的左子树不为空，则放入队列等待后续处理
+            if (tmp.left != null) {
+                queue.add(tmp.left);
+            }
+            //如果当前节点的右子树不为空，则放入队列等待后续处理
+            if (tmp.right != null) {
+                queue.add(tmp.right);
             }
         }
+
         return root;
     }
 
-    public static void swap(TreeNode left, TreeNode right) {
-        TreeNode tmp = left;
-        left = right;
-        right = tmp;
-    }
 }
