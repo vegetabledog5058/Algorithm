@@ -20,9 +20,9 @@ public class ThreeSum {
             // 枚举 b
             for (int second = first + 1; second < n; ++second) {
                 // 需要和上一次枚举的数不相同
-                if (second > first + 1 && nums[second] == nums[second - 1]) {
-                    continue;
-                }
+//                if (second > first + 1 && nums[second] == nums[second - 1]) {
+//                    continue;
+//                }
                 // 需要保证 b 的指针在 c 的指针的左侧
                 while (second < third && nums[second] + nums[third] > target) {
                     --third;
@@ -45,8 +45,9 @@ public class ThreeSum {
     }
 
     public static void main(String[] args) {
-        int[]nums = {-1,0,1,2,-1,-4};
-        List<List<Integer>> result=threeSum(nums);
+//        int[]nums = {-1,0,1,2,-1,-4};
+        int[] nums = {0, 0, 0,0,0};
+        List<List<Integer>> result = threeSum(nums);
         System.out.println(result);
     }
 }
