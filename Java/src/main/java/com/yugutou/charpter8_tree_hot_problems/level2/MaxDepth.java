@@ -39,11 +39,11 @@ public class MaxDepth {
     public static int maxDepth_1(TreeNode root) {
         if (root == null) {
             return 0;
-        } else {
-            int leftHeight = maxDepth_1(root.left);
-            int rightHeight = maxDepth_1(root.right);
-            return Math.max(leftHeight, rightHeight) + 1;
         }
+        int leftHeight = maxDepth_1(root.left);
+        int rightHeight = maxDepth_1(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+
     }
 
     /**
@@ -77,8 +77,6 @@ public class MaxDepth {
         }
         return ans;
     }
-
-
 
 
 }

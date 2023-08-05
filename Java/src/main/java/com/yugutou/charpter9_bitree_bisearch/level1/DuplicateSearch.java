@@ -28,7 +28,7 @@ public class DuplicateSearch {
             return -1;
         int left = 0;
 
-        if ( nums[0] == target) {
+        if (nums[0] == target) {
             return 0;
         }
 
@@ -43,6 +43,8 @@ public class DuplicateSearch {
                 //找到之后，往左边找
                 while (mid != 0 && nums[mid] == target)
                     mid--;
+                if (mid == 0 && nums[mid] == target)
+                    return 0;
                 return mid + 1;
             }
         }
