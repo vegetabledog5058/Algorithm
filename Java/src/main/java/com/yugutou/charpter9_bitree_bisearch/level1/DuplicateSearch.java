@@ -43,8 +43,6 @@ public class DuplicateSearch {
                 //找到之后，往左边找
                 while (mid != 0 && nums[mid] == target)
                     mid--;
-                if (mid == 0 && nums[mid] == target)
-                    return 0;
                 return mid + 1;
             }
         }
