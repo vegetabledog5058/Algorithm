@@ -1,9 +1,9 @@
-package com.yugutou.charpter9_bitree_bisearch.level3;
+package com.yugutou.charpter9_bitree_bisearch.level2;
 
 /**
  * 剑指 Offer 53 - II. 0～n-1中缺失的数字
  */
-public class Solve {
+public class MissingNumber {
     public static void main(String[] args) {
         int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
         System.out.println(solve(nums));

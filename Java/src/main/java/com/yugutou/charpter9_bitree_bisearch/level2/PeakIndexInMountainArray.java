@@ -1,4 +1,4 @@
-package com.yugutou.charpter9_bitree_bisearch.level3;
+package com.yugutou.charpter9_bitree_bisearch.level2;
 
 /**
  * LeetCode852.山峰数组，
