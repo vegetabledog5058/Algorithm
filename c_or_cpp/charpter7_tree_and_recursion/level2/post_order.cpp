@@ -3,18 +3,18 @@
 
 struct TreeNode {
     int val;
-    struct TreeNode* left;
-    struct TreeNode* right;
-     struct TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+     TreeNode* left;
+     TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
-void preorderTraversal(TreeNode* root) {
+void postOrderTraversal(TreeNode* root) {
     if (root == nullptr) {
         return;
     }
  
-    preorderTraversal(root->left); // 递归遍历左子树
-    preorderTraversal(root->right); // 递归遍历右子树
+    postOrderTraversal(root->left); // 递归遍历左子树
+    postOrderTraversal(root->right); // 递归遍历右子树
     printf("%d ", root->val); // 访问根节点
 }
 
@@ -37,7 +37,7 @@ int main() {
 
     // 中序遍历二叉树并输出结果
     printf("Preorder traversal of binary tree is: ");
-    preorderTraversal(root);
+    postOrderTraversal(root);
     printf("\n");
 
     // 释放二叉树内存空间

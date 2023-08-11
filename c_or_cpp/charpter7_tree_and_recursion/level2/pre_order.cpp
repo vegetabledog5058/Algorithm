@@ -3,9 +3,9 @@
 
 struct TreeNode {
     int val;
-    struct TreeNode* left;
-    struct TreeNode* right;
-     struct TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+     TreeNode* left;
+     TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
 void preorderTraversal(TreeNode* root) {
