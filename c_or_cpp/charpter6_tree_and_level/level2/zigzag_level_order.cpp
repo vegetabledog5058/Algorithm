@@ -12,40 +12,38 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        vector<vector<int>> ans;
-        if (!root) {
-            return ans;
-        }
-
-        queue<TreeNode*> nodeQueue;
-        nodeQueue.push(root);
-        bool isOrderLeft = true;
-
-        while (!nodeQueue.empty()) {
-            deque<int> levelList;
-            int size = nodeQueue.size();
-            for (int i = 0; i < size; ++i) {
-                auto node = nodeQueue.front();
-                nodeQueue.pop();
-                if (isOrderLeft) {
-                    levelList.push_back(node->val);
-                } else {
-                    levelList.push_front(node->val);
+ vector<vector<int> > zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int> > ans;
+        if (!root) return ans;
+        deque<TreeNode*> que;
+        que.push_back(root);
+        bool zigzag = true;
+        TreeNode* tmp;
+        while (!que.empty()) {
+            int Size = que.size();
+            vector<int> tmp_vec;
+            while (Size) { 
+                if (zigzag) { // 前取后放
+                    tmp = que.front();
+                    que.pop_front();
+                    if (tmp->left) que.push_back(tmp->left);
+                    if (tmp->right) que.push_back(tmp->right);                
+                } else { //后取前放
+                    tmp = que.back();
+                    que.pop_back();
+                    if (tmp->right) que.push_front(tmp->right);
+                    if (tmp->left) que.push_front(tmp->left);
                 }
-                if (node->left) {
-                    nodeQueue.push(node->left);
-                }
-                if (node->right) {
-                    nodeQueue.push(node->right);
-                }
+                tmp_vec.push_back(tmp->val);
+                --Size;
             }
-            ans.emplace_back(vector<int>{levelList.begin(), levelList.end()});
-            isOrderLeft = !isOrderLeft;
+            zigzag = !zigzag;
+            ans.push_back(tmp_vec);
         }
-
         return ans;
     }
+
+
 
 int main() {
     // 创建二叉树，这里以一个示例二叉树为例，具体实现可以根据实际情况进行修改。
@@ -56,7 +54,7 @@ int main() {
     root->right->right = new TreeNode(7);
 
      
-    vector<vector<int>> res = zigzagLevelOrder(root);
+    vector<vector<int> > res = zigzagLevelOrder(root);
     for (auto& row : res) {
         for (auto& val : row) {
             cout << val << " ";

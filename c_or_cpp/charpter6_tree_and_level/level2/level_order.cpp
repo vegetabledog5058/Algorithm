@@ -12,8 +12,8 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-vector<vector<int>> levelOrder(TreeNode* root) {
-    vector<vector<int>> ret;
+vector<vector<int> > levelOrder(TreeNode* root) {
+    vector<vector<int> > ret;
     if (!root) {
         return ret;
     }
@@ -44,7 +44,7 @@ int main() {
     root->right->right = new TreeNode(7);
 
     // 调用levelOrder函数获取并输出二叉树的层序遍历结果。
-    vector<vector<int>> res = levelOrder(root);
+    vector<vector<int> > res = levelOrder(root);
     for (auto& row : res) {
         for (auto& val : row) {
             cout << val << " ";

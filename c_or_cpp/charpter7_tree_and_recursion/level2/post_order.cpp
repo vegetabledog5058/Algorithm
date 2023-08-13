@@ -20,20 +20,12 @@ void postOrderTraversal(TreeNode* root) {
 
 int main() {
     // 创建二叉树
-    TreeNode* root = (TreeNode*)malloc(sizeof(TreeNode));
-    root->val = 1;
-    root->left = (TreeNode*)malloc(sizeof(TreeNode));
-    root->left->val = 2;
-    root->right = (TreeNode*)malloc(sizeof(TreeNode));
-    root->right->val = 3;
-    root->left->left = (TreeNode*)malloc(sizeof(TreeNode));
-    root->left->left->val = 4;
-    root->left->right = (TreeNode*)malloc(sizeof(TreeNode));
-    root->left->right->val = 5;
-    root->right->left = (TreeNode*)malloc(sizeof(TreeNode));
-    root->right->left->val = 6;
-    root->right->right = (TreeNode*)malloc(sizeof(TreeNode));
-    root->right->right->val = 7;
+
+    TreeNode *root = new TreeNode(1);
+    root->left = new TreeNode(2);
+    root->right = new TreeNode(3);
+    root->right->left = new TreeNode(5);
+    root->right->right = new TreeNode(6);
 
     // 中序遍历二叉树并输出结果
     printf("Preorder traversal of binary tree is: ");

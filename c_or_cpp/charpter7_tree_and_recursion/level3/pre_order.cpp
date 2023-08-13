@@ -21,8 +21,8 @@ vector<int> preorderTraversal(TreeNode* root) {
     TreeNode* node = root;
     while (!stk.empty() || node != nullptr) {
         while (node != nullptr) {
-            res.emplace_back(node->val);
-            stk.emplace(node);
+            res.push_back(node->val);
+            stk.push(node);
             node = node->left;
         }
         node = stk.top();
