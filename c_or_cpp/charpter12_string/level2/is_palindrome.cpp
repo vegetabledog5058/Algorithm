@@ -1,6 +1,9 @@
-class Solution {
-public:
-    bool isPalindrome(string s) {
+#include <iostream>
+#include <string>
+
+using namespace std; 
+
+ bool isPalindrome(string s) {
         string sgood;
         for (char ch: s) {
             if (isalnum(ch)) {
@@ -18,4 +21,10 @@ public:
         }
         return true;
     }
-};
+
+int main() {
+    char s[] = "abba";
+    cout<<isPalindrome(s)<<endl;
+   
+    return 0;
+}    
