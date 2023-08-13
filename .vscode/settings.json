@@ -6,6 +6,7 @@
         "iosfwd": "cpp",
         "iterator": "cpp",
         "iostream": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "algorithm": "cpp"
     }
 }
