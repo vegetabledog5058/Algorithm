@@ -4,6 +4,7 @@ public class HammingWeight {
     public static void main(String[] args) {
         System.out.println(hammingWeight1(11));
         System.out.println(hammingWeight2(11));
+
     }
 
     /**
