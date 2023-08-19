@@ -19,7 +19,20 @@ double findMaxAverage(int nums[], int k) {
     }
     return (double) res / k;
 }
-
+//第二种方法
+int findLengthOfLCIS2(int* nums, int numsSize) {
+    int curLen = 1; // 当前连续递增区间的长度
+    int res = 1; // 最大长度
+    for (int i = 1; i < numsSize; i++) {
+        if (nums[i - 1] >= nums[i]) { // 不满足要求，重新开始计数
+            curLen = 1;
+        } else {
+            curLen++;
+        }
+        res = max(curLen, res); // 更新最大长度
+    }
+    return res;
+}
 int main() {
     int nums[] = {1, 2, 3, 4, 5};
     int k = 2;
