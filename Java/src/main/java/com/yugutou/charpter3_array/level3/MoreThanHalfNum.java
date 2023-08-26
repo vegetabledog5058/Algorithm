@@ -9,8 +9,9 @@ import java.util.Map;
  */
 public class MoreThanHalfNum {
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
-        System.out.println(moreThanHalfNum(arr));
+//        int[] arr = {1, 2, 3, 2, 2, 2, 5, 4, 2};
+        int[] arr = {1, 2, 3, 4};
+        System.out.println(majorityElement(arr));
     }
 
     /**
@@ -62,5 +63,18 @@ public class MoreThanHalfNum {
                 return result;
         }
         return 0;
+    }
+    public static int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
     }
 }
