@@ -3,7 +3,7 @@ package com.yugutou.charpter8_tree_hot_problems.level1.topic3_翻转;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
-import java.util.LinkedList;
+import java.util.*;
 
 /**
  * leetcode104 翻转问题
@@ -16,7 +16,7 @@ public class Invert {
 
         TreeNode result = null;
         //LeetCode101 对称二叉树
-        int testMethod = 1;
+        int testMethod = 4;
         switch (testMethod) {
             case 1:
                 result = invertTree_1(bTree.root);
@@ -27,6 +27,8 @@ public class Invert {
             case 3:
                 result = invertTree_3(bTree.root);
                 break;
+            default:
+                result = invertTree_4(bTree.root);
         }
 
         System.out.println(result.val);
@@ -39,9 +41,6 @@ public class Invert {
      * @return
      */
     public static TreeNode invertTree_1(TreeNode root) {
-        if (root == null) {
-            return null;
-        }
         TreeNode temp = root.left;
         root.left = root.right;
         root.right = temp;
@@ -62,6 +61,21 @@ public class Invert {
         if (root == null) {
             return null;
         }
+        invertTree_2( root.left);
+        invertTree_2( root.right);
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+
+
+
+
+
+
+
+
+
+
         TreeNode left = invertTree_2(root.left);
         TreeNode right = invertTree_2(root.right);
         root.left = right;
@@ -101,4 +115,27 @@ public class Invert {
         return root;
     }
 
+    public static TreeNode invertTree_4(TreeNode root) {
+        if (root == null) return null;
+        Deque<TreeNode> queue = new LinkedList<>();
+        Deque<Integer> res = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode poll = queue.poll();
+            //交换左右节点
+            TreeNode left = poll.left;
+            poll.left = poll.right;
+            poll.right = left;
+            if (poll.left != null) {
+                queue.add(poll.left);
+            }
+            if (poll.right != null) {
+                queue.add(poll.right);
+            }
+            return root;
+
+        }
+        return res;
+
+    }
 }

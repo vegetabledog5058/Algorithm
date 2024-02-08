@@ -8,37 +8,59 @@ public class RotateRight {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5};
         ListNode nodeA = initLinkedList(a);
-        ListNode node = rotateRight(nodeA, 2);
+        ListNode node = rotateRight(nodeA, 3);
         System.out.println(toString(node));
     }
 
     public static ListNode rotateRight(ListNode head, int k) {
-        if (head == null || k == 0) {
+        if (head == null || k == 0 || head.next == null) {
             return head;
         }
-        ListNode temp = head;
-        ListNode fast = head;
-        ListNode slow = head;
-        int len = 0;
-        while (head != null) {
-            head = head.next;
+
+        int len = 1;
+        ListNode tem = head;
+        while (tem.next != null) {
+            tem = tem.next;
             len++;
         }
-        if (k % len == 0) {
-            return temp;
+
+        int add = len - k % len;
+        if (add == len) {
+            return head;
         }
-        while ((k % len) > 0) {
-            k--;
-            fast = fast.next;
+        tem.next = head;
+        while (add-- > 0) {
+            tem = tem.next;
+
         }
-        while (fast.next != null) {
-            fast = fast.next;
-            slow = slow.next;
-        }
-        ListNode res = slow.next;
-        slow.next = null;
-        fast.next = temp;
+        ListNode res = tem.next;
+        tem.next = null;
         return res;
+
+
+//        ListNode temp = head;
+//        ListNode fast = head;
+//        ListNode slow = head;
+//        int len = 0;
+//        while (head != null) {
+//            head = head.next;
+//            len++;
+//        }
+//        if (k % len == 0) {
+//            return temp;
+//        }
+//        while ((k % len) > 0) {
+//            k--;
+//            fast = fast.next;
+//        }
+//        while (fast.next != null) {
+//            fast = fast.next;
+//            slow = slow.next;
+//        }
+//        ListNode res = slow.next;
+//        slow.next = null;
+//        fast.next = temp;
+//        return res;
     }
 
     /**

@@ -33,18 +33,29 @@ public class DeleteDuplatePoint {
      * @return
      */
     public static ListNode deleteDuplicate(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-        ListNode cur = head;
-        while (cur.next != null) {
-            if (cur.val == cur.next.val) {
-                cur.next = cur.next.next;
+        ListNode dummy = new ListNode(-0);
+        dummy.next = head;
+        ListNode tem = dummy;
+        while (tem.next != null) {
+            if (tem.val == tem.next.val) {
+                tem.next = tem.next.next;
             } else {
-                cur = cur.next;
+                tem = tem.next;
             }
         }
-        return head;
+        return dummy.next;
+//        if (head == null) {
+//            return head;
+//        }
+//        ListNode cur = head;
+//        while (cur.next != null) {
+//            if (cur.val == cur.next.val) {
+//                cur.next = cur.next.next;
+//            } else {
+//                cur = cur.next;
+//            }
+//        }
+//        return head;
     }
 
     /**
@@ -54,25 +65,45 @@ public class DeleteDuplatePoint {
      * @return
      */
     public static ListNode deleteDuplicates(ListNode head) {
-        if (head == null) {
-            return head;
-        }
-
-        ListNode dummy = new ListNode(0);
+        if(head==null){return head;}
+        ListNode dummy = new ListNode(-1);
         dummy.next = head;
-        ListNode cur = dummy;
-        while (cur.next != null && cur.next.next != null) {
-            if (cur.next.val == cur.next.next.val) {
-                int x = cur.next.val;
-                while (cur.next != null && cur.next.val == x) {
-                    cur.next = cur.next.next;
+        ListNode in ;
+        ListNode tem = dummy;
+        while (tem.next!=null&&tem.next.next!= null) {
+            if (tem.next.val == tem.next.next.val) {
+                in = tem.next;
+                while (in.next!=null&&in.val == in.next.val) {
+                    in = in.next;
                 }
+                tem.next = in.next;
+
             } else {
-                cur = cur.next;
+                tem = tem.next;
             }
         }
-
         return dummy.next;
+
+
+//        if (head == null) {
+//            return head;
+//        }
+//
+//        ListNode dummy = new ListNode(0);
+//        dummy.next = head;
+//        ListNode cur = dummy;
+//        while (cur.next != null && cur.next.next != null) {
+//            if (cur.next.val == cur.next.next.val) {
+//                int x = cur.next.val;
+//                while (cur.next != null && cur.next.val == x) {
+//                    cur.next = cur.next.next;
+//                }
+//            } else {
+//                cur = cur.next;
+//            }
+//        }
+//
+//        return dummy.next;
     }
 
     /**

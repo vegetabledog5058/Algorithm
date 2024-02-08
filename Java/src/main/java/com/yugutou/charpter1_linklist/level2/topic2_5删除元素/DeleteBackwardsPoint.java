@@ -3,6 +3,7 @@ package com.yugutou.charpter1_linklist.level2.topic2_5删除元素;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class DeleteBackwardsPoint {
     /**
@@ -95,20 +96,40 @@ public class DeleteBackwardsPoint {
      */
     public static ListNode removeNthFromEndByStack(ListNode head, int n) {
         ListNode dummy = new ListNode(0);
+        Stack<ListNode>stack = new Stack<>();
         dummy.next = head;
-        Deque<ListNode> stack = new LinkedList<ListNode>();
-        ListNode cur = dummy;
-        while (cur != null) {
-            stack.push(cur);
-            cur = cur.next;
+        ListNode tem = dummy;
+        while (tem!=null){
+            stack.push(tem);
+            tem = tem.next;
         }
-        for (int i = 0; i < n; ++i) {
-            stack.pop();
+        for (int i = 0; i < n; i++) {
+           stack.pop();
         }
-        ListNode prev = stack.peek();
-        prev.next = prev.next.next;
-        ListNode ans = dummy.next;
-        return ans;
+stack.peek().next = stack.peek().next.next;
+        return dummy.next;
+
+
+
+
+
+
+
+//        ListNode dummy = new ListNode(0);
+//        dummy.next = head;
+//        Deque<ListNode> stack = new LinkedList<ListNode>();
+//        ListNode cur = dummy;
+//        while (cur != null) {
+//            stack.push(cur);
+//            cur = cur.next;
+//        }
+//        for (int i = 0; i < n; ++i) {
+//            stack.pop();
+//        }
+//        ListNode prev = stack.peek();
+//        prev.next = prev.next.next;
+//        ListNode ans = dummy.next;
+//        return ans;
     }
 
     /**
@@ -119,20 +140,43 @@ public class DeleteBackwardsPoint {
      * @return
      */
     public static ListNode removeNthFromEndByTwoPoints(ListNode head, int n) {
-        ListNode dummy = new ListNode(0);
-        dummy.next = head;
-        ListNode first = head;
-        ListNode second = dummy;
-        for (int i = 0; i < n; ++i) {
-            first = first.next;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode tem = dummyHead;
+        ListNode slow = dummyHead;
+        ListNode fast = dummyHead;
+        while (n-- >0){
+            fast = fast.next;
         }
-        while (first != null) {
-            first = first.next;
-            second = second.next;
-        }
-        second.next = second.next.next;
-        ListNode ans = dummy.next;
-        return ans;
+        while (fast.next!=null){
+            fast= fast.next;
+            slow=slow.next;
+        }slow.next = slow.next.next;
+        return dummyHead.next;
+
+
+
+
+
+
+
+
+
+
+//        ListNode dummy = new ListNode(0);
+//        dummy.next = head;
+//        ListNode first = head;
+//        ListNode second = dummy;
+//        for (int i = 0; i < n; ++i) {
+//            first = first.next;
+//        }
+//        while (first != null) {
+//            first = first.next;
+//            second = second.next;
+//        }
+//        second.next = second.next.next;
+//        ListNode ans = dummy.next;
+//        return ans;
     }
 
     /**

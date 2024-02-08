@@ -2,6 +2,7 @@ package com.yugutou.charpter4_stack.level2;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 class MinStack {
     Deque<Integer> xStack;

@@ -1,5 +1,7 @@
 package com.yugutou.charpter1_linklist.level2.topic2_1第一个公共结点;
 
+import com.yugutou.charpter1_linklist.level1.ListNode;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,8 +16,7 @@ public class FindFirstCommonNode {
         ListNode lb = heads[1];
 
 
-
-        int testMethod = 1;
+        int testMethod = 3;
         ListNode node = new ListNode(0);
         switch (testMethod) {
             case 1: //方法1：通过Hash辅助查找
@@ -33,10 +34,33 @@ public class FindFirstCommonNode {
             case 5://方法5：通过差辅助查找
                 node = findFirstCommonNodeBySub(la, lb);
                 break;
+            case 6://暴力破解
+                node = findFirstCommonNodeByFor(la, lb);
+                break;
         }
 
         System.out.println("公共结点为：" + node.val);
 
+    }
+
+    /**
+     * 暴力破解
+     */
+    public static ListNode findFirstCommonNodeByFor(ListNode pHead1, ListNode pHead2) {
+        ListNode pointerA = pHead1;
+        ListNode pointerB;
+        while (pointerA != null) {
+            pointerA = pointerA.next;
+            pointerB = pHead2;
+            while (pointerB != null) {
+                if (pointerA.val == pointerB.val) {
+                    return pointerB;
+                } else {
+                    pointerB = pointerB.next;
+                }
+            }
+        }
+        return null;
     }
 
     /**
@@ -71,21 +95,21 @@ public class FindFirstCommonNode {
     /**
      * 方法2：通过集合来辅助查找
      *
-     * @param headA
-     * @param headB
+     * @param pHead1
+     * @param pHead2
      * @return
      */
-    public static ListNode findFirstCommonNodeBySet(ListNode headA, ListNode headB) {
+    public static ListNode findFirstCommonNodeBySet(ListNode pHead1, ListNode pHead2) {
         Set<ListNode> set = new HashSet<>();
-        while (headA != null) {
-            set.add(headA);
-            headA = headA.next;
+        while (pHead1 != null) {
+            set.add(pHead1);
+            pHead1 = pHead1.next;
         }
 
-        while (headB != null) {
-            if (set.contains(headB))
-                return headB;
-            headB = headB.next;
+        while (pHead2 != null) {
+            if (set.contains(pHead2))
+                return pHead2;
+            pHead2 = pHead2.next;
         }
         return null;
     }
@@ -93,16 +117,40 @@ public class FindFirstCommonNode {
     /**
      * 方法3：通过栈
      */
-    public static ListNode findFirstCommonNodeByStack(ListNode headA, ListNode headB) {
+    public static ListNode findFirstCommonNodeByStack(ListNode pHead1, ListNode pHead2) {
         Stack<ListNode> stackA = new Stack();
         Stack<ListNode> stackB = new Stack();
-        while (headA != null) {
-            stackA.push(headA);
-            headA = headA.next;
+        while (pHead1 != null) {
+            stackA.add(pHead1);
+            pHead1 = pHead1.next;
         }
-        while (headB != null) {
-            stackB.push(headB);
-            headB = headB.next;
+        while (pHead2 != null) {
+            stackB.add(pHead2);
+            pHead2 = pHead2.next;
+        }
+        ListNode tem = null;
+        while (stackA.size() > 0 && stackB.size() > 0) {
+            if (stackA.peek() == stackB.peek()) {
+                stackB.pop();
+                tem = stackA.pop();
+                continue;
+            } else {
+                return tem;
+            }
+        }
+        return null;
+    }
+    //官方写法
+
+/*        Stack<ListNode> stackA = new Stack();
+        Stack<ListNode> stackB = new Stack();
+        while (pHead1 != null) {
+            stackA.push(pHead1);
+            pHead1 = pHead1.next;
+        }
+        while (pHead2 != null) {
+            stackB.push(pHead2);
+            pHead2 = pHead2.next;
         }
 
         ListNode preNode = null;
@@ -115,26 +163,28 @@ public class FindFirstCommonNode {
             }
         }
         return preNode;
-    }
+        }*/
+
 
     /**
      * 方法4：通过序列拼接
      */
-    public static ListNode findFirstCommonNodeByCombine(ListNode pHead1, ListNode pHead2) {
-        if (pHead1 == null || pHead2 == null) {
+    public static ListNode findFirstCommonNodeByCombine(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) {
             return null;
         }
-        ListNode p1 = pHead1;
-        ListNode p2 = pHead2;
+
+        ListNode p1 = headA;
+        ListNode p2 = headB;
         while (p1 != p2) {
             p1 = p1.next;
             p2 = p2.next;
             if (p1 != p2) {
                 if (p1 == null) {
-                    p1 = pHead2;
+                    p1 = headB;
                 }
                 if (p2 == null) {
-                    p2 = pHead1;
+                    p2 = headA;
                 }
             }
         }

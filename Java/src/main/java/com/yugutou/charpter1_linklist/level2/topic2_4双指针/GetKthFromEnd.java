@@ -8,17 +8,24 @@ public class GetKthFromEnd {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5};
         ListNode nodeA = initLinkedList(a);
+//        while (nodeA!=null){
+//            System.out.println(nodeA.val);
+//            nodeA = nodeA.next;
+//        }
         ListNode node = getKthFromEnd(nodeA,2);
-        System.out.println(node.val);
+      //  System.out.println(node.val);
+//        ListNode node1 = middleNode(node);
+//        System.out.println(node1.val);
+
     }
 
     public static ListNode getKthFromEnd(ListNode head, int k) {
         ListNode fast = head;
         ListNode slow = head;
-
-        while (fast != null && k > 0) {
-            fast = fast.next;
+        while (k>0&&fast != null ) {
             k--;
+            fast = fast.next;
+
         }
         while (fast != null) {
             fast = fast.next;
@@ -43,6 +50,16 @@ public class GetKthFromEnd {
             }
         }
         return head;
+    }
+    public static ListNode middleNode(ListNode head) {
+
+        ListNode fast =head;
+        ListNode slow = head;
+        while(fast!=null&&fast.next!=null){
+            fast=fast.next.next;
+            slow = slow.next;
+        }
+        return slow;
     }
 
     static class ListNode {

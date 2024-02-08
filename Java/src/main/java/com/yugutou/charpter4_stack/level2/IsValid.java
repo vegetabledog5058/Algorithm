@@ -17,27 +17,67 @@ public class IsValid {
 
         Stack<Character> stack = new Stack<>();
 
-        for (int i = 0; i < s.length(); i++) {
-            char item = s.charAt(i);
-            if (smap.containsKey(item)) {
-                stack.push(item);
-            } else {
-                if (!stack.isEmpty()) {
-                    Character left = stack.pop();
-                    char rightchar = smap.get(left);
-                    if (rightchar != item) {
-                        return false;
-                    }
-                } else {
+
+        for (char c:s.toCharArray()) {
+            if(smap.containsKey(c)){
+                stack.push(c);
+            }else {
+            if(stack.isEmpty()){
+                return false;
+            }
+                if(smap.get(stack.pop())!=c){
                     return false;
                 }
             }
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        for (int i = 0; i < s.length(); i++) {
+//            char item = s.charAt(i);
+//            if (smap.containsKey(item)) {
+//                stack.push(item);
+//            } else {
+//                if (!stack.isEmpty()) {
+//                    Character left = stack.pop();
+//                    char rightchar = smap.get(left);
+//                    if (rightchar != item) {
+//                        return false;
+//                    }
+//                } else {
+//                    return false;
+//                }
+//            }
+//        }
         return stack.isEmpty();
     }
 
     public static void main(String[] args) {
         String s = "()[]{}";
+
         System.out.println(isValid(s));
     }
 }

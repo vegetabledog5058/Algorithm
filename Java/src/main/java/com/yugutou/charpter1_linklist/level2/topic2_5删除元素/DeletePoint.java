@@ -43,16 +43,32 @@ public class DeletePoint {
      * @return
      */
     public static ListNode removeElements(ListNode head, int val) {
-        ListNode dummyHead = new ListNode(0);
+        if(head==null)return head;
+     ListNode dummyHead = new ListNode(-1);
         dummyHead.next = head;
-        ListNode temp = dummyHead;
-        while (temp.next != null) {
-            if (temp.next.val == val) {
-                temp.next = temp.next.next;
-            } else {
-                temp = temp.next;
+        head = dummyHead;
+        while (head.next!=null){
+            if(head.next.val==val){
+                head.next = head .next.next;
             }
+                head = head.next;
         }
+
+
+
+
+
+
+//        ListNode dummyHead = new ListNode(0);
+//        dummyHead.next = head;
+//        ListNode temp = dummyHead;
+//        while (temp.next != null) {
+//            if (temp.next.val == val) {
+//                temp.next = temp.next.next;
+//            } else {
+//                temp = temp.next;
+//            }
+//        }
         return dummyHead.next;
     }
 

@@ -26,24 +26,36 @@ public class Symmetry {
      * @return
      */
     public static boolean isSymmetric(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-
+        if (root == null) return true;
         return check(root.left, root.right);
     }
 
     public static boolean check(TreeNode p, TreeNode q) {
-        if (p == null && q == null) {
-            return true;
-        }
-        if (p == null || q == null) {
-            return false;
-        }
-        if (p.val != q.val) {
-            return false;
-        }
+        if (p == null || q == null) return p == q;
+        if (p.val == q.val) return true;
         return check(p.left, q.right) && check(p.right, q.left);
     }
+
+
+//    public static boolean isSymmetric(TreeNode root) {
+//        if (root == null) {
+//            return true;
+//        }
+//
+//        return check(root.left, root.right);
+//    }
+//
+//    public static boolean check(TreeNode p, TreeNode q) {
+//        if (p == null && q == null) {
+//            return true;
+//        }
+//        if (p == null || q == null) {
+//            return false;
+//        }
+//        if (p.val != q.val) {
+//            return false;
+//        }
+//        return check(p.left, q.right) && check(p.right, q.left);
+//    }
 
 }

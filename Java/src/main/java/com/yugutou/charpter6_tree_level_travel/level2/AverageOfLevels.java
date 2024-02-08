@@ -4,10 +4,7 @@ package com.yugutou.charpter6_tree_level_travel.level2;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * LeetCode 515题目要求：
@@ -26,18 +23,34 @@ public class AverageOfLevels {
         if (root == null) return res;
         Queue<TreeNode> list = new LinkedList<>();
         list.add(root);
-        while (list.size() != 0) {
-            int len = list.size();
+        while (!list.isEmpty()) {
+            int size = list.size();
             double sum = 0;
-            for (int i = 0; i < len; i++) {
-                TreeNode node = list.poll();
-                sum += node.val;
-                if (node.left != null) list.add(node.left);
-                if (node.right != null) list.add(node.right);
+            for (int i = 0; i < size; i++) {
+                TreeNode polled = list.remove();
+                sum += polled.val;
+                TreeNode left = polled.left;
+                TreeNode right = polled.right;
+                if (left != null) list.add(left);
+                if (right != null) list.add(right);
             }
-            res.add(sum / len);
+            res.add((double) (sum/size));
         }
         return res;
+
+//        list.add(root);
+//        while (list.size() != 0) {
+//            int len = list.size();
+//            double sum = 0;
+//            for (int i = 0; i < len; i++) {
+//                TreeNode node = list.poll();
+//                sum += node.val;
+//                if (node.left != null) list.add(node.left);
+//                if (node.right != null) list.add(node.right);
+//            }
+//            res.add(sum / len);
+//        }
+//        return res;
     }
 }
 

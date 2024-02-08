@@ -3,6 +3,7 @@ package com.yugutou.charpter8_tree_hot_problems.level1.topic_路径专题;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,8 +29,6 @@ public class HasPathSum {
     }
 
 
-
-
     /**
      * 问题2：LeetCode112. 路径总和
      *
@@ -47,30 +46,49 @@ public class HasPathSum {
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
-
-    /**
-     * 问题3  LeetCode113 路径总和II
-     */
-    static List<List<Integer>> ret = new LinkedList<List<Integer>>();
-    static Deque<Integer> path = new LinkedList<Integer>();
-
-    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
-        dfs(root, targetSum);
-        return ret;
+    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+        List<List<Integer>> res = new LinkedList<>();
+        if (root == null) return res;
+        dfs(root, targetSum,res);
+        return res;
     }
-
-    public static void dfs(TreeNode root, int targetSum) {
-        if (root == null) {
-            return;
-        }
+    static Deque<Integer> path = new LinkedList<Integer>();
+    public static void dfs(TreeNode root, int targetSum, List<List<Integer>> res) {
+        if (root == null) return;
         path.offerLast(root.val);
         targetSum -= root.val;
         if (root.left == null && root.right == null && targetSum == 0) {
-            ret.add(new LinkedList<Integer>(path));
+            res.add(new LinkedList<Integer>(path));
         }
-        dfs(root.left, targetSum);
-        dfs(root.right, targetSum);
+        dfs(root.left, targetSum, res);
+        dfs(root.right, targetSum, res);
         path.pollLast();
     }
+
+//
+//    /**
+//     * 问题3  LeetCode113 路径总和II
+//     */
+//    static List<List<Integer>> ret = new LinkedList<List<Integer>>();
+//    static Deque<Integer> path = new LinkedList<Integer>();
+//
+//    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+//        dfs(root, targetSum);
+//        return ret;
+//    }
+//
+//    public static void dfs(TreeNode root, int targetSum) {
+//        if (root == null) {
+//            return;
+//        }
+//        path.offerLast(root.val);
+//        targetSum -= root.val;
+//        if (root.left == null && root.right == null && targetSum == 0) {
+//            ret.add(new LinkedList<Integer>(path));
+//        }
+//        dfs(root.left, targetSum);
+//        dfs(root.right, targetSum);
+//        path.pollLast();
+//    }
 
 }

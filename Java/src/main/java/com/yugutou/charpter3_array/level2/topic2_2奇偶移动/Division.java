@@ -22,45 +22,94 @@ public class Division {
     /**
      * 双指针，不稳定 的移动
      *
-     * @param A
+     * @param nums
      * @return
      */
-    public static int[] sortArrayByParity(int[] A) {
-        int left = 0, right = A.length - 1;
-        while (left < right) {
-            if (A[left] % 2 > A[right] % 2) {
-                int tmp = A[left];
-                A[left] = A[right];
-                A[right] = tmp;
+    public static int[] sortArrayByParity(int[] nums) {
+        int left = 0;
+        int right = nums.length-1;
+        while (left<=right){
+            if(nums[left]%2!=0&&nums[right]%2==0){
+                int tem = nums[left];
+                nums[left] = nums[right];
+                nums[right] = tem;
+
+            }
+            if(nums[left]%2==0){
+                left++;
+            }
+            if(nums[right]%2!=0){
+                right--;
             }
 
-            if (A[left] % 2 == 0) left++;
-            if (A[right] % 2 == 1) right--;
-        }
+        }return nums;
 
-        return A;
+
+
+
+
+
+
+
+
+
+//
+//
+//        int left = 0, right = A.length - 1;
+//        while (left < right) {
+//            if (A[left] % 2 > A[right] % 2) {
+//                int tmp = A[left];
+//                A[left] = A[right];
+//                A[right] = tmp;
+//            }
+//
+//            if (A[left] % 2 == 0) left++;
+//            if (A[right] % 2 == 1) right--;
+//        }
+//
+//        return A;
     }
 
     /**
      * 模仿冒泡的稳定移动方法
      *
-     * @param array
+     * @param nums
      * @return
      */
-    public static int[] reOrderArray(int[] array) {
-        if (array == null || array.length == 0)
-            return new int[0];
-        int n = array.length;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < n - 1 - i; j++) {
-                // 左边是偶数, 右边是奇数的情况
-                if ((array[j] & 1) == 0 && (array[j + 1] & 1) == 1) {
-                    int tmp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = tmp;
+    public static int[] reOrderArray(int[] nums) {
+        for (int i = 0; i < nums.length-1; i++) {
+            for (int j = 0; j < nums.length-1; j++) {
+                if(nums[j]%2!=0&&nums[j+1]%2==0){
+                    int tem = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[j+1] = tem;
                 }
             }
-        }
-        return array;
+        }return nums;
+
+
+
+
+
+
+
+
+
+
+
+//        if (array == null || array.length == 0)
+//            return new int[0];
+//        int n = array.length;
+//        for (int i = 0; i < n; i++) {
+//            for (int j = 0; j < n - 1 - i; j++) {
+//                // 左边是偶数, 右边是奇数的情况
+//                if ((array[j] & 1) == 0 && (array[j + 1] & 1) == 1) {
+//                    int tmp = array[j];
+//                    array[j] = array[j + 1];
+//                    array[j + 1] = tmp;
+//                }
+//            }
+//        }
+//        return array;
     }
 }

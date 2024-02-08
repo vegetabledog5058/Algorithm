@@ -11,7 +11,7 @@ public class IsPalindromic {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 4, 3, 2, 1};
         ListNode node = initLinkedList(a);
-        int testMethod = 1;
+        int testMethod = 2;
         boolean result = false;
         switch (testMethod) {
             case 1://方法1：通过双指针的方式来判断
@@ -42,6 +42,18 @@ public class IsPalindromic {
         if (head == null || head.next == null) {
             return true;
         }
+        //链表翻转
+        ListNode ans = new ListNode(-1);
+        ListNode cur =head;
+        while (cur!=null){
+            ListNode next = cur.next;
+            cur.next = ans.next; //第一次循环ans.next为null
+            ans.next = cur;
+            cur = next;
+        }
+
+
+
         ListNode slow = head, fast = head;
         ListNode pre = head, prepre = null;
         while (fast != null && fast.next != null) {
@@ -71,7 +83,23 @@ public class IsPalindromic {
      * @return
      */
     public static boolean isPalindromeByAllStack(ListNode head) {
-        ListNode temp = head;
+        ListNode headNode = head;
+        Stack<Integer> stack1 = new Stack<>();
+        while (head != null) {
+            stack1.add(head.val);
+            head = head.next;
+        }
+        head = headNode;
+        int i = 0;
+        for (; i < stack1.size() / 2; i++) {
+            if (stack1.peek() != head.val) {
+                break;
+            }
+        }
+        return i == stack1.size() / 2;
+
+    }
+      /*      ListNode temp = head;
         Stack<Integer> stack = new Stack();
         //把链表节点的值存放到栈中
         while (temp != null) {
@@ -86,7 +114,9 @@ public class IsPalindromic {
             head = head.next;
         }
         return true;
-    }
+        }
+        */
+
 
     /**
      * 方法3：只将一半的数据压栈
@@ -95,8 +125,9 @@ public class IsPalindromic {
      * @return
      */
     public static boolean isPalindromeByHalfStack(ListNode head) {
-        if (head == null)
+        if (head == null) {
             return true;
+        }
         ListNode temp = head;
         Stack<Integer> stack = new Stack();
         //链表的长度
@@ -111,8 +142,9 @@ public class IsPalindromic {
         len >>= 1;
         //然后再出栈
         while (len-- >= 0) {
-            if (head.val != stack.pop())
+            if (head.val != stack.pop()) {
                 return false;
+            }
             head = head.next;
         }
         return true;

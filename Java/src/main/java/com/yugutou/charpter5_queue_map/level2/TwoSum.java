@@ -6,16 +6,33 @@ import java.util.Map;
 public class TwoSum {
 
     public static int[] twoSum(int[] nums, int target) {
-        int n = nums.length;
-        for (int i = 0; i < n; ++i) {
-            for (int j = i + 1; j < n; ++j) {
-                if (nums[i] + nums[j] == target) {
-                    return new int[]{i, j};
-                }
+        Map<Integer,Integer>map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            int key = nums[i];
+            if (map.containsKey(target-key)){
+                return new int[]{map.get(target-key),i};
             }
+            map.put(nums[i],i );
         }
         return new int[0];
     }
+
+
+
+
+//    public static int[] twoSum(int[] nums, int target) {
+//        int n = nums.length;
+//        for (int i = 0; i < n; ++i) {
+//            for (int j = i + 1; j < n; ++j) {
+//                if (nums[i] + nums[j] == target) {
+//                    return new int[]{i, j};
+//                }
+//            }
+//        }
+//        return new int[0];
+//    }
+
+
 
     //第二种实现方式
     public int[] twoSum2(int[] nums, int target) {

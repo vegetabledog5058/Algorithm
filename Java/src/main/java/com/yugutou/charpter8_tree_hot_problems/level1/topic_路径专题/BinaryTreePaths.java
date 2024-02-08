@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class BinaryTreePaths {
     public static void main(String[] args) {
-         BinaryTree bTree = new BinaryTree();
+        BinaryTree bTree = new BinaryTree();
         bTree.root = bTree.buildBinaryTree();
         List<String> result = binaryTreePaths(bTree.root);
         System.out.println(result);
@@ -19,21 +19,37 @@ public class BinaryTreePaths {
 
     public static List<String> binaryTreePaths(TreeNode root) {
         List<String> res = new ArrayList<>();
-        dfs(root, "", res);
+        dfs(root,"",res);
         return res;
     }
 
     private static void dfs(TreeNode root, String path, List<String> res) {
-        //如果为空，直接返回
-        if (root == null)
-            return;
-        //如果是叶子节点，说明找到了一条路径，把它加入到res中
-        if (root.left == null && root.right == null) {
-            res.add(path + root.val);
-            return;
+        if (root==null)return;
+        if (root.left == null&&root.right==null) {
+            res.add(path+root.val);
         }
-        //如果不是叶子节点，在分别遍历他的左右子节点
-        dfs(root.left, path + root.val + "->", res);
-        dfs(root.right, path + root.val + "->", res);
+
+        dfs(root.left,path+"->",res);
+        dfs(root.right,path+"->",res);
+
     }
+//    public static List<String> binaryTreePaths(TreeNode root) {
+//        List<String> res = new ArrayList<>();
+//        dfs(root, "", res);
+//        return res;
+//    }
+//
+//    private static void dfs(TreeNode root, String path, List<String> res) {
+//        //如果为空，直接返回
+//        if (root == null)
+//            return;
+//        //如果是叶子节点，说明找到了一条路径，把它加入到res中
+//        if (root.left == null && root.right == null) {
+//            res.add(path + root.val);
+//            return;
+//        }
+//        //如果不是叶子节点，在分别遍历他的左右子节点
+//        dfs(root.left, path + root.val + "->", res);
+//        dfs(root.right, path + root.val + "->", res);
+//    }
 }

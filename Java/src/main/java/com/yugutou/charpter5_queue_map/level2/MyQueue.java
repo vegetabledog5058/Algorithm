@@ -6,7 +6,52 @@ import java.util.LinkedList;
 class MyQueue {
     Deque<Integer> inStack;
     Deque<Integer> outStack;
-    public MyQueue() {
+
+    public MyQueue(){
+        inStack = new LinkedList<>();
+        outStack= new LinkedList<>();
+    }
+
+    public void push(int x) {
+        inStack.push(x);
+    }
+
+    public int pop() {
+        if (outStack.isEmpty()){
+            while (inStack.iterator().hasNext()){
+                outStack.push(inStack.pop());
+            }
+        }
+        if (empty()){
+            return -1;
+        }
+        return outStack.pop();
+
+    }
+
+    public int peek() {
+        if (empty()) {
+            return -1;
+        }
+        if (outStack.isEmpty()){
+            while (inStack.iterator().hasNext()){
+                outStack.push(inStack.pop());
+            }
+        }
+        return outStack.peek();
+    }
+
+    public boolean empty() {
+        return outStack.isEmpty()&&inStack.isEmpty();
+    }
+
+
+
+
+
+
+
+  /*  public MyQueue() {
         inStack = new LinkedList<Integer>();
         outStack = new LinkedList<Integer>();
     }
@@ -32,5 +77,5 @@ class MyQueue {
         while (!inStack.isEmpty()) {
             outStack.push(inStack.pop());
         }
-    }
+    }*/
 }

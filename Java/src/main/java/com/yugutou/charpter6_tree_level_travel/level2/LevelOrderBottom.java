@@ -1,5 +1,4 @@
 package com.yugutou.charpter6_tree_level_travel.level2;
-
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
@@ -22,6 +21,7 @@ public class LevelOrderBottom {
     }
 
     public static List<List<Integer>> levelOrderBottom(TreeNode root) {
+
         List<List<Integer>> levelOrder = new LinkedList<List<Integer>>();
         if (root == null) {
             return levelOrder;

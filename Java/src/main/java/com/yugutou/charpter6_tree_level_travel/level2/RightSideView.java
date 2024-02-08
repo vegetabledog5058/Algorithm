@@ -3,15 +3,12 @@ package com.yugutou.charpter6_tree_level_travel.level2;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 /**
- *  LeetCode 199题目要求:
- *  给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，
- *  返回从右侧所能看到的节点值。
+ * LeetCode 199题目要求:
+ * 给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，
+ * 返回从右侧所能看到的节点值。
  */
 public class RightSideView {
     public static void main(String[] args) {
@@ -26,23 +23,49 @@ public class RightSideView {
         if (root == null) {
             return res;
         }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        Queue<TreeNode> queue = new ArrayDeque<>();
+        queue.add(root);
         while (!queue.isEmpty()) {
+
             int size = queue.size();
+            TreeNode tem;
             for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.offer(node.left);
+                 tem=  queue.remove();
+                if (i == size -1) {
+                    res.add(tem.val);
                 }
-                if (node.right != null) {
-                    queue.offer(node.right);
+                TreeNode left = tem.left;
+                TreeNode right = tem.right;
+                if (left != null) {
+                    queue.add(left);
                 }
-                if (i == size - 1) {  //将当前层的最后一个节点放入结果列表
-                    res.add(node.val);
+                if (right != null) {
+                    queue.add(right);
                 }
+                res .add(tem.val);
             }
+
         }
+
+
+
+//        Queue<TreeNode> queue = new LinkedList<>();
+//        queue.offer(root);
+//        while (!queue.isEmpty()) {
+//            int size = queue.size();
+//            for (int i = 0; i < size; i++) {
+//                TreeNode node = queue.poll();
+//                if (node.left != null) {
+//                    queue.offer(node.left);
+//                }
+//                if (node.right != null) {
+//                    queue.offer(node.right);
+//                }
+//                if (i == size - 1) {  //将当前层的最后一个节点放入结果列表
+//                    res.add(node.val);
+//                }
+//            }
+//        }
         return res;
     }
 }

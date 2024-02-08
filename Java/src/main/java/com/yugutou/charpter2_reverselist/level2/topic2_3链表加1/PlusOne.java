@@ -7,8 +7,8 @@ import java.util.Stack;
  */
 public class PlusOne {
     public static void main(String[] args) {
-        int[] a = {7, 8};
-//        int[] a = {9,9,9};
+      //  int[] a = {7, 8};
+       int[] a = {9,9,9};
 //        int[] a = {1, 2, 3};
         ListNode nodeA = initLinkedList(a);
 
@@ -20,23 +20,63 @@ public class PlusOne {
 
     public static ListNode plusOne(ListNode head) {
         Stack<Integer> st = new Stack();
-        while (head != null) {
+        while(head!=null){
             st.push(head.val);
-            head = head.next;
+            head= head.next;
         }
-        int carry = 0;
-        ListNode dummy = new ListNode(0);
-//        int adder = 1;
-        while (!st.empty() || carry > 0) {
-            int digit = st.empty() ? 0 : st.pop();
-            int sum = digit + 1 + carry;
-            carry = sum >= 10 ? 1 : 0;
-            sum = sum >= 10 ? sum - 10 : sum;
+        ListNode dummy = new ListNode(-1);
+        int add=1;
+        int cheery =0;
+        while (!st.isEmpty()||cheery>0){
+            int dig = st.isEmpty()?0:st.pop();
+            int sum = dig+add+cheery;
+              cheery = sum>=10 ? 1 :0;
+            sum = sum>=10?sum-10:sum;
+
             ListNode cur = new ListNode(sum);
             cur.next = dummy.next;
-            dummy.next = cur;
-//            adder = 0;
+            dummy.next =cur;
+            add = 0;
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//
+//
+//        Stack<Integer> st = new Stack();
+//        while (head != null) {
+//            st.push(head.val);
+//            head = head.next;
+//        }
+//        int carry = 0;
+//        ListNode dummy = new ListNode(0);
+//        int adder = 1;
+//        while (!st.empty() || carry > 0) {
+//            int digit = st.empty() ? 0 : st.pop();
+//            int sum = digit + adder + carry;
+//            carry = sum >= 10 ? 1 : 0;
+//            sum = sum >= 10 ? sum - 10 : sum;
+//            ListNode cur = new ListNode(sum);
+//            cur.next = dummy.next;
+//            dummy.next = cur;
+//           adder = 0;
+//        }
         return dummy.next;
     }
 

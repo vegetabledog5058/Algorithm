@@ -1,5 +1,9 @@
 package com.yugutou.charpter1_linklist.level2.topic2_3合并有序链表;
 
+import com.yugutou.charpter1_linklist.level1.ListNode;
+
+import java.awt.*;
+
 public class MergeList {
     public static void main(String[] args) {
         int[] a = {1, 5, 8, 12};
@@ -15,7 +19,7 @@ public class MergeList {
         ListNode nodeD = initLinkedList(e);
         System.out.println(middleNode(nodeD).val);
 
-        int testMethod = 2;
+        int testMethod = 4;
         switch (testMethod) {
             case 1://最直接的方法
                 d = mergeTwoLists2(nodeA, nodeB);
@@ -44,6 +48,7 @@ public class MergeList {
         return slow;
     }
 
+
     /**
      * 方法1：面试时就能写出来的方法
      *
@@ -52,8 +57,23 @@ public class MergeList {
      * @return
      */
     public static ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode newnode = new ListNode(-1);
+        ListNode newhead = newnode;
+        while (list1 != null && list2 != null) {
+            if (list1.val > list2.val) {
+                newnode.next = list2;
+                list2 = list2.next;
+            } else {
+                newnode.next = list1;
+                list1 = list1.next;
+            }
+            newnode = newnode.next;
+        }
+        newnode.next = list1 == null ? list2 : list1;
+        return newhead.next;
+
         // write code here
-        ListNode newHead = new ListNode(-1);
+       /* ListNode newHead = new ListNode(-1);
         ListNode res = newHead;
         while (list1 != null || list2 != null) {
 
@@ -82,7 +102,7 @@ public class MergeList {
                 newHead = newHead.next;
             }
         }
-        return res.next;
+        return res.next;*/
     }
 
 
@@ -188,6 +208,7 @@ public class MergeList {
         return head;
     }
 
+
     /**
      * 合并K个链表
      *
@@ -195,13 +216,27 @@ public class MergeList {
      * @return
      */
     public static ListNode mergeKLists(ListNode[] lists) {
-        ListNode res = null;
-        for (ListNode list : lists) {
-            res = mergeTwoListsMoreSimple(res, list);
-        }
-        return res;
-    }
+//        ListNode head = lists[0];
+//        for (int i = 0; i < lists.length - 1; i++) {
+//            while (lists[i].next != null) {
+//                lists[i] = lists[i].next;
+//            }
+//        lists[i].next = lists[i+1];
+//        }
+//        return head;
 
+
+
+        ListNode res = null;
+
+        //for (int i = 0; i < lists.length; i++) res = mergeTwoListsMoreSimple(res,lists[i]);
+
+
+        for (ListNode list : lists) res = mergeTwoListsMoreSimple(res, list);
+
+        return res;
+
+    }
 
     /**
      * 输出链表
@@ -217,7 +252,22 @@ public class MergeList {
         }
         return sb.toString();
     }
-
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+      ListNode nodea = null;
+      ListNode nodeb =list2;
+      ListNode heada = list1;
+      while (list2.next!=null){
+          list2 = list2.next;
+      }
+        while (list1!=null){
+            if(a--==1)nodea = list1;
+            if(b--==-1)break;
+            list1 = list1.next;
+        }
+        list2.next = list1;
+        nodea.next = nodeb;
+        return heada;
+    }
     static class ListNode {
         public int val;
         public ListNode next;

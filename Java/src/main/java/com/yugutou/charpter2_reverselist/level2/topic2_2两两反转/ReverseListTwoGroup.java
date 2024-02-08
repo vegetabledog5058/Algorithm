@@ -1,6 +1,6 @@
 package com.yugutou.charpter2_reverselist.level2.topic2_2两两反转;
 
-public class ReverseListTwoGroup {
+public class   ReverseListTwoGroup {
     public static void main(String[] args) {
         int[] a = {1, 2, 3, 4, 5};
         ListNode nodeA = initLinkedList(a);
@@ -18,17 +18,40 @@ public class ReverseListTwoGroup {
      * @return
      */
     public static  ListNode swapPairs(ListNode head) {
-        ListNode dummyHead = new ListNode(0);
-        dummyHead.next = head;
-        ListNode cur = dummyHead;
-        while (cur.next != null && cur.next.next != null) {
-            ListNode node1 = cur.next;
-            ListNode node2 = cur.next.next;
-            cur.next = node2;
-            node1.next = node2.next;
-            node2.next = node1;
-            cur = node1;
-        }
+        ListNode dummyHead = new ListNode(-1);
+         ListNode tem = dummyHead;
+         dummyHead.next = head;
+         while (tem.next!=null&&tem.next.next!=null){
+             ListNode cur = tem.next;
+             ListNode next = cur.next;
+             //交换位置
+             cur.next = next.next;
+             next.next = tem.next;
+             tem.next = next;
+             tem = cur;
+         }
+
+
+
+
+
+
+
+
+
+
+
+//        ListNode dummyHead = new ListNode(0);
+//        dummyHead.next = head;
+//        ListNode cur = dummyHead;
+//        while (cur.next != null && cur.next.next != null) {
+//            ListNode node1 = cur.next;
+//            ListNode node2 = cur.next.next;
+//            cur.next = node2;
+//            node1.next = node2.next;
+//            node2.next = node1;
+//            cur = node1;
+//        }
         return dummyHead.next;
     }
     /**

@@ -3,10 +3,7 @@ package com.yugutou.charpter7_tree_and_recurison.level3;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 基于迭代实现前序遍历
@@ -16,7 +13,6 @@ public class PreOrderTraversal {
         BinaryTree bTree = new BinaryTree();
         bTree.root = bTree.buildBinaryTree();
 //        bTree.root = bTree.buildBinaryTree();
-
         System.out.println(preOrderTraversal(bTree.root));
     }
 
@@ -33,11 +29,13 @@ public class PreOrderTraversal {
             while (node != null) {
                 res.add(node.val);
                 stack.push(node);
-                node = node.left;
+                node = node.right;
             }
             node = stack.pop();
-            node = node.right;
+            node = node.left;
+
         }
+        Collections.reverse(res);
         return res;
     }
 

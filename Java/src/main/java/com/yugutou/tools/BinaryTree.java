@@ -14,9 +14,12 @@ public class BinaryTree {
     public TreeNode buildBinaryTree() {
         TreeNode node = new TreeNode(3);
         node.left = new TreeNode(9);
+        node.left.left = new TreeNode(11);
         node.right = new TreeNode(20);
         node.right.right = new TreeNode(7);
         node.right.left = new TreeNode(15);
+        node.right.left.left = new TreeNode(22);
+        node.right.left.right = new TreeNode(29);
         return node;
     }
 

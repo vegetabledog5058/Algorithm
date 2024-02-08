@@ -49,4 +49,3 @@ nohup.out
 *.pid
 local-run-temp-log4j2.yaml
 **/worker/tool/*.java
-

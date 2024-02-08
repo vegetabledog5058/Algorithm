@@ -22,6 +22,10 @@ public class InOrderTraversal {
     public static List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<Integer>();
         Deque<TreeNode> stack = new LinkedList<TreeNode>();
+        TreeNode node =root;
+
+
+
         while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);

@@ -12,7 +12,7 @@ public class ReverseListBetween {
                 d = reverseBetween(nodeA, 2, 4);
                 break;
             case 2://方法2：头插法
-                d = reverseBetween2(nodeA, 2, 4);
+                d = reverseBetween2(nodeA, 2, 5);
                 break;
 
         }
@@ -31,38 +31,66 @@ public class ReverseListBetween {
      * @return
      */
     public static ListNode reverseBetween(ListNode head, int left, int right) {
-        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论
-        ListNode dummyNode = new ListNode(-1);
-        dummyNode.next = head;
-
-        ListNode pre = dummyNode;
-        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点
-        // 建议写在 for 循环里，语义清晰
+        ListNode dummy = new ListNode(-1);
+        dummy.next = head;
+        ListNode pre = dummy;
         for (int i = 0; i < left - 1; i++) {
             pre = pre.next;
         }
-
-        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点
-        ListNode rightNode = pre;
-        for (int i = 0; i < right - left + 1; i++) {
-            rightNode = rightNode.next;
+        ListNode tem = pre.next;
+        for (int i = 0; i < right - left ; i++) {
+            tem = tem.next;
         }
+        ListNode suc = tem.next;
+        tem.next = null;
 
-        // 第 3 步：切断出一个子链表（截取链表）
-        ListNode leftNode = pre.next;
-        ListNode succ = rightNode.next;
+        ListNode pre1 = null;
+        ListNode cur = pre.next;
+        ListNode head1 =cur;
 
-        // 注意：切断链接
-//        pre.next = null;
-        rightNode.next = null;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre1;
+            pre1 = cur;
+            cur = next;
+        }
+        head1.next = suc;
+        pre.next = tem;
 
-        // 第 4 步：同第 206 题，反转链表的子区间
-        reverseList(leftNode);
 
-        // 第 5 步：接回到原来的链表中
-        pre.next = rightNode;
-        leftNode.next = succ;
-        return dummyNode.next;
+
+        // 因为头节点有可能发生变化，使用虚拟头节点可以避免复杂的分类讨论
+//        ListNode dummyNode = new ListNode(-1);
+//        dummyNode.next = head;
+//
+//        ListNode pre = dummyNode;
+//        // 第 1 步：从虚拟头节点走 left - 1 步，来到 left 节点的前一个节点
+//        // 建议写在 for 循环里，语义清晰
+//        for (int i = 0; i < left - 1; i++) {
+//            pre = pre.next;
+//        }
+//
+//        // 第 2 步：从 pre 再走 right - left + 1 步，来到 right 节点
+//        ListNode rightNode = pre;
+//        for (int i = 0; i < right - left + 1; i++) {
+//            rightNode = rightNode.next;
+//        }
+//
+//        // 第 3 步：切断出一个子链表（截取链表）
+//        ListNode leftNode = pre.next;
+//        ListNode succ = rightNode.next;
+//
+//        // 注意：切断链接
+////        pre.next = null;
+//        rightNode.next = null;
+//
+//        // 第 4 步：同第 206 题，反转链表的子区间
+//        reverseList(leftNode);
+//
+//        // 第 5 步：接回到原来的链表中
+//        pre.next = rightNode;
+//      leftNode.next = succ;
+        return dummy.next;
     }
 
     /**
@@ -71,7 +99,7 @@ public class ReverseListBetween {
      * @param head
      * @return
      */
-    public static ListNode  reverseList(ListNode head) {
+    public static ListNode reverseList(ListNode head) {
         ListNode prev = null;
         ListNode curr = head;
         while (curr != null) {
@@ -92,7 +120,6 @@ public class ReverseListBetween {
      * @return
      */
     public static ListNode reverseBetween2(ListNode head, int left, int right) {
-        // 设置 dummyNode 是这一类问题的一般做法
         ListNode dummyNode = new ListNode(-1);
         dummyNode.next = head;
         ListNode pre = dummyNode;
@@ -100,13 +127,28 @@ public class ReverseListBetween {
             pre = pre.next;
         }
         ListNode cur = pre.next;
-        ListNode next;
         for (int i = 0; i < right - left; i++) {
-            next = cur.next;
+            ListNode next = cur.next;
             cur.next = next.next;
             next.next = pre.next;
             pre.next = next;
         }
+
+        // 设置 dummyNode 是这一类问题的一般做法
+//        ListNode dummyNode = new ListNode(-1);
+//        dummyNode.next = head;
+//        ListNode pre = dummyNode;
+//        for (int i = 0; i < left - 1; i++) {
+//            pre = pre.next;
+//        }
+//        ListNode cur = pre.next;
+//        ListNode next;
+//        for (int i = 0; i < right - left; i++) {
+//            next = cur.next;
+//            cur.next = next.next;
+//            next.next = pre.next;
+//            pre.next = next;
+//        }
         return dummyNode.next;
     }
 
