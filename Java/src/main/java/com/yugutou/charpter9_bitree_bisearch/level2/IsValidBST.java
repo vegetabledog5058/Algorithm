@@ -1,6 +1,7 @@
 package com.yugutou.charpter9_bitree_bisearch.level2;
 
 
+import com.yugutou.charpter3_array.level2.topic2_3轮转问题.Rotate;
 import com.yugutou.tools.BinaryTree;
 import com.yugutou.tools.TreeNode;
 
@@ -30,6 +31,26 @@ public class IsValidBST {
         if (root == null) {
             return true;
         }
+        if (!isValidBST(root.left)){return false;}
+        if (root.val<=pre){
+            return false;
+        }
+        pre = root.val;
+        isValidBST(root.right);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // 如果左子树下某个元素不满足要求，则退出
         if (!isValidBST(root.left)) {
             return false;

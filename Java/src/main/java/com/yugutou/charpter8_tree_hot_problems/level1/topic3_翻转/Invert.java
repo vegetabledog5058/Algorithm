@@ -28,7 +28,7 @@ public class Invert {
                 result = invertTree_3(bTree.root);
                 break;
             default:
-                result = invertTree_4(bTree.root);
+//                result = invertTree_4(bTree.root);
         }
 
         System.out.println(result.val);
@@ -115,27 +115,27 @@ public class Invert {
         return root;
     }
 
-    public static TreeNode invertTree_4(TreeNode root) {
-        if (root == null) return null;
-        Deque<TreeNode> queue = new LinkedList<>();
-        Deque<Integer> res = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            TreeNode poll = queue.poll();
-            //交换左右节点
-            TreeNode left = poll.left;
-            poll.left = poll.right;
-            poll.right = left;
-            if (poll.left != null) {
-                queue.add(poll.left);
-            }
-            if (poll.right != null) {
-                queue.add(poll.right);
-            }
-            return root;
-
-        }
-        return res;
-
-    }
+//    public static TreeNode invertTree_4(TreeNode root) {
+//        if (root == null) return null;
+//        Deque<TreeNode> queue = new LinkedList<>();
+//        Deque<Integer> res = new LinkedList<>();
+//        queue.add(root);
+//        while (!queue.isEmpty()) {
+//            TreeNode poll = queue.poll();
+//            //交换左右节点
+//            TreeNode left = poll.left;
+//            poll.left = poll.right;
+//            poll.right = left;
+//            if (poll.left != null) {
+//                queue.add(poll.left);
+//            }
+//            if (poll.right != null) {
+//                queue.add(poll.right);
+//            }
+//            return root;
+//
+//        }
+//        return res;
+//
+//    }
 }

@@ -46,7 +46,7 @@ public class HasPathSum {
         return hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val);
     }
 
-    public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
+    public static List<List<Integer>> pathSum(TreeNode root, int targetSum) {
         List<List<Integer>> res = new LinkedList<>();
         if (root == null) return res;
         dfs(root, targetSum,res);

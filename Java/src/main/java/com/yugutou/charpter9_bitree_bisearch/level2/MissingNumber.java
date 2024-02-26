@@ -5,11 +5,25 @@ package com.yugutou.charpter9_bitree_bisearch.level2;
  */
 public class MissingNumber {
     public static void main(String[] args) {
-        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
+//        int[] nums = {0, 1, 2, 3, 4, 5, 6, 7, 9};
+        int[] nums = {0, 2, 3, 4, 5, 6,7, 8, 9};
         System.out.println(solve(nums));
     }
 
     public static int solve(int[] a) {
+//       int left = 0;
+//       int right = a.length-1;
+//       while (left<=right){
+//           int mid = (left+right)>>1;
+//           if (a[mid]==mid){
+//               left = mid+1;
+//           }else {
+//               right = mid-1;
+//           }
+//
+//       } return left;
+
+
         // write code here
         int left = 0;
         int right = a.length - 1;

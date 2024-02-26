@@ -24,6 +24,13 @@ public class SearchBST {
      * @return
      */
     public static TreeNode searchBST(TreeNode root, int val) {
+        //递归条件
+//        if (root==null)return null;
+//        if ( val == root.val)return root;
+//        if (val<root.val) {return searchBST(root.left,val);}
+//        else {return searchBST(root.right,val);}
+
+
         if (root == null || val == root.val) return root;
         return val < root.val ? searchBST(root.left, val) : searchBST(root.right, val);
     }
