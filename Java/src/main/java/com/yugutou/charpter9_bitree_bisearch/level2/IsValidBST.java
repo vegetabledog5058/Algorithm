@@ -50,7 +50,6 @@ public class IsValidBST {
 
 
 
-
         // 如果左子树下某个元素不满足要求，则退出
         if (!isValidBST(root.left)) {
             return false;
