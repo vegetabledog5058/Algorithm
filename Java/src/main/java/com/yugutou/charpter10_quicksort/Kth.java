@@ -1,5 +1,9 @@
 package com.yugutou.charpter10_quicksort;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class Kth {
     public static void main(String[] args) {
         int[] array = {6, 3, 2, 4, 5, 8, 7};
@@ -52,4 +56,30 @@ public class Kth {
             quicksort(nums, start, right); //向右递归
         }
     }
+//    public static int  quickSelect(int[] nums, int k) {
+//        int pivot = nums[0];
+//        List<Integer>big = new ArrayList<>();
+//        List<Integer>small = new ArrayList<>();
+//        List<Integer>equal = new ArrayList<>();
+//        for (int num:nums){
+//            if (num>pivot){
+//                big.add(num);
+//            } else if (num<k) {
+//                small.add(num);
+//            }else {
+//                equal.add(num);
+//            }
+//        }
+//        if (big.size()>=k){
+//
+//        }
+//        if (big.size()<k) {
+//
+//        }
+//        return;
+//    }
+//    public int findKthLargest(int[] nums, int k) {
+//
+//    }
+
 }
