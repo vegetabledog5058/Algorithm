@@ -9,6 +9,7 @@ public class QuickSelect {
 //        int[] arr = {1};
 //        int[] arr = {3,2,1,5,6,4};
         int[] arr= { 3,2,3,1,2,4,5,5,6};
+
         System.out.println(numK(arr,4));
     }
     public static int numK(int[] nums, int k) {
