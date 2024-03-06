@@ -8,6 +8,7 @@ public class ToLowerCase {
     }
 
     public static String toLowerCase(String s) {
+
         int n = s.length();
         char[] chars = s.toCharArray();
         for (int i = 0; i < n; ++i) {
