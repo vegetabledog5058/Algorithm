@@ -16,22 +16,36 @@ public class MyAtoi {
         char[] charArray = str.toCharArray();
         //去除前导空格
         int index = 0;
-        while(charArray[index]==' '&&index<len){
+        while (index < len && charArray[index] == ' ') {
             index++;
         }
         //判断符号位
         int sign = 1;
-        if(charArray[index]=='+'){
+        if (charArray[index] == '+') {
             index++;
-        }else if(charArray[index]=='-'){
+        } else if (charArray[index] == '-') {
             index++;
             sign--;
         }
-        int temp = index;
-        while(index<len&&charArray[index]>=48&&charArray[index]<=57){
-
+        int res = 0;
+        while (index < len) {
+            char ch = charArray[index];
+            //判断此时index是数字还是其他,不是数字直接退出
+            if (ch < '0' || ch > '9') {
+                break;
+            }
+            //这里是符合条件,对数字进行转换和越界处理
+            if (res > Integer.MAX_VALUE / 10 || res == Integer.MAX_VALUE / 10 && ch - '0' > Integer.MAX_VALUE % 10) {
+                return Integer.MAX_VALUE;
+            }
+            if (res < Integer.MIN_VALUE / 10 || res == Integer.MIN_VALUE / 10 && ch - '0' > -(Integer.MIN_VALUE % 10)) {
+                return Integer.MIN_VALUE;
+            }
+            //没有越界,开始组成结果
+            res = res * 10 + sign * (ch - '0');
+            index++;
         }
-        return 0;
+        return res;
 
 //        int len = str.length();
 //        char[] charArray = str.toCharArray();
@@ -84,4 +98,5 @@ public class MyAtoi {
 //        }
 //        return res;
     }
+
 }
