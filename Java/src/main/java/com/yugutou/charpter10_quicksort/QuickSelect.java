@@ -21,7 +21,7 @@ public class QuickSelect {
         int right = end;
 //        int base = nums[(left+right)>>1];
         Random r =new Random();
-        int pivot = r.nextInt(start, end );
+        int pivot = r.nextInt(start- end );
         int base = nums[pivot];
         while (left<right){
 
